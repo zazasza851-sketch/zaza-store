@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zaza Store</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}
+header{background:#1565c0;color:white;padding:18px 6%;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:800;font-size:22px}.wrap{max-width:1100px;margin:auto;padding:24px}
+.hero{background:linear-gradient(135deg,#1565c0,#42a5f5);color:white;border-radius:24px;padding:28px;margin-bottom:22px}
+.balance{font-size:32px;font-weight:800;margin:8px 0 18px}.btn{border:0;border-radius:12px;padding:12px 18px;font-weight:700;cursor:pointer;background:white;color:#1565c0}
+h2{margin-top:28px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.card{background:white;border-radius:18px;padding:20px;text-align:center;box-shadow:0 4px 18px #0000000d;cursor:pointer}.icon{font-size:30px;margin-bottom:8px}
+.promo{margin-top:20px;background:white;padding:18px;border-radius:18px}
+footer{text-align:center;padding:30px;color:#667085}
+.modal{display:none;position:fixed;inset:0;background:#0008;align-items:center;justify-content:center;padding:20px}.box{background:white;border-radius:20px;padding:24px;max-width:420px;width:100%}
+input{width:100%;padding:13px;border:1px solid #ccd3df;border-radius:10px;margin:8px 0 14px}
+.qr{font-size:110px;text-align:center;padding:15px}
+.close{float:right;cursor:pointer;font-size:22px}
+</style>
+</head>
+<body>
+<header><div class="logo">ZS · ZAZA STORE</div><div>🔔 👤</div></header>
+<main class="wrap">
+<section class="hero">
+<div>Selamat datang di Zaza Store 👋</div>
+<div class="balance" id="balance">Rp0</div>
+<button class="btn" onclick="topup()">＋ Isi Saldo QRIS</button>
+</section>
+
+<h2>Layanan</h2>
+<div class="grid" id="services"></div>
+
+<div class="promo"><b>🎁 Promo Zaza Store</b><br>Harga dan promo spesial untuk pengguna.</div>
+<h2>Transaksi Terakhir</h2>
+<div class="card" style="cursor:default">Belum ada transaksi.</div>
+</main>
+<footer>Zaza Store · Mudah, Cepat & Terpercaya</footer>
+
+<div class="modal" id="modal"><div class="box">
+<span class="close" onclick="closeModal()">×</span>
+<h2>Isi Saldo via QRIS</h2>
+<label>Nominal</label>
+<select id="amount" style="width:100%;padding:13px;border-radius:10px">
+<option value="10000">Rp10.000</option><option value="20000">Rp20.000</option><option value="50000">Rp50.000</option>
+<option value="100000">Rp100.000</option><option value="200000">Rp200.000</option><option value="500000">Rp500.000</option>
+</select>
+<div class="qr">▦</div><center><b>TOKO ZAZA</b><br>Scan QRIS untuk membayar</center>
+<button class="btn" style="margin-top:18px;width:100%" onclick="demoPaid()">Cek Pembayaran</button>
+<p style="font-size:12px;color:#667085">Demo: saldo tidak ditambah otomatis. Versi produksi membutuhkan payment gateway/QRIS resmi dan verifikasi server.</p>
+</div></div>
+
+<script>
+const services=[
+['📱','Pulsa'],['🌐','Paket Data'],['🎮','Top Up Game'],['💳','E-Wallet'],['⚡','Token PLN'],['🧾','PPOB'],
+['📞','Nomor Kosong'],['⭐','Aplikasi Premium'],['🤖','Order Bot WA']
+];
+document.getElementById('services').innerHTML=services.map(x=>`<div class="card" onclick="service('${x[1]}')"><div class="icon">${x[0]}</div><b>${x[1]}</b></div>`).join('');
+function topup(){document.getElementById('modal').style.display='flex'}
+function closeModal(){document.getElementById('modal').style.display='none'}
+function demoPaid(){alert('Pembayaran perlu diverifikasi oleh sistem. Ini masih versi demo.');closeModal()}
+function service(name){alert('Halaman '+name+' siap dikembangkan.')}
+</script>
+</body>
+</html>
