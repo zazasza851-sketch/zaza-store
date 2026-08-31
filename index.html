@@ -51,16 +51,43 @@ input{width:100%;padding:13px;border:1px solid #ccd3df;border-radius:10px;margin
 <p style="font-size:12px;color:#667085">Demo: saldo tidak ditambah otomatis. Versi produksi membutuhkan payment gateway/QRIS resmi dan verifikasi server.</p>
 </div></div>
 
-<script>
+<<script>
+const nomorWA="6289630747010";
+
 const services=[
-['📱','Pulsa'],['🌐','Paket Data'],['🎮','Top Up Game'],['💳','E-Wallet'],['⚡','Token PLN'],['🧾','PPOB'],
-['📞','Nomor Kosong'],['⭐','Aplikasi Premium'],['🤖','Order Bot WA']
+["📱","Pulsa"],
+["🌐","Paket Data"],
+["🎮","Top Up Game"],
+["💳","E-Wallet"],
+["⚡","Token PLN"],
+["🧾","PPOB"],
+["📞","Nomor Kosong"],
+["⭐","Aplikasi Premium"],
+["🤖","Order Bot WA"]
 ];
-document.getElementById('services').innerHTML=services.map(x=>`<div class="card" onclick="service('${x[1]}')"><div class="icon">${x[0]}</div><b>${x[1]}</b></div>`).join('');
-function topup(){document.getElementById('modal').style.display='flex'}
-function closeModal(){document.getElementById('modal').style.display='none'}
-function demoPaid(){alert('Pembayaran perlu diverifikasi oleh sistem. Ini masih versi demo.');closeModal()}
-function service(name){alert('Halaman '+name+' siap dikembangkan.')}
+
+document.getElementById("services").innerHTML=services.map(x=>
+`<div class="card" onclick="service('${x[1]}')">
+<div style="font-size:50px">${x[0]}</div>
+<b>${x[1]}</b>
+</div>`
+).join("");
+
+function topup(){
+document.getElementById("modal").style.display="flex";
+}
+
+function closeModal(){
+document.getElementById("modal").style.display="none";
+}
+
+function demoPaid(){
+alert("Silakan lakukan pembayaran sesuai instruksi.");
+closeModal();
+}
+
+function service(name){
+const pesan=`Halo Zaza Store 👋%0ASaya ingin order *${name}*.%0A%0ANama:%0ANomor:%0AProduk/nominal:%0A`;
+window.location.href=`https://wa.me/${nomorWA}?text=${pesan}`;
+}
 </script>
-</body>
-</html>
